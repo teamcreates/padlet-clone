@@ -10,14 +10,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section className="bg-orange-500 py-2">
+      <section className="flex bg-orange-500 py-3">
         <p className=" ml-2 text-xs text-orange-400">Company</p>
         <div className="ml-20">
           <h1 className="text-2xl mt-7 font-bold text-white">Title this is the title</h1>
           <h2 className="text-slate-100">Descriptio</h2>
         </div>
       </section>
-      <section className="bg-orange-400 pb-10"> 
+      <section className=""> 
           
       </section>
     </div>
