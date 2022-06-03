@@ -6,7 +6,7 @@ import Card from "../components/card";
 export default function Home() {
   const [Cards, setCards] = useState([]);
   const [CmakebarState, setCmakebarState] = useState(false);
-  const [CbarInputValue, setCbarInputValue] = useState('');
+  const [CbarInputValue, setCbarInputValue] = useState({title: '', content: ''});
 
   function cardmakebar() {
     if (CmakebarState === true) {
@@ -39,15 +39,16 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="inline-block m-1 mt-32  z-10 mb-4 w-full">
-        {Cards.map((cardz) => (
-          <Card content={cardz} />
+      <section className="inline-block mt-32  z-10 mb-4 w-full">
+        {Cards.map((card, i) => (
+          <Card key={i} title={card.title} content={card.content} />
         ))}
       </section>
       <button onClick={cardmakebar}>press!</button>
       {
         CmakebarState &&(<div className="fixed top-50 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white m-20 z-0">
-          <input placeholder="make a new card" onChange={e => {setCbarInputValue(e.target.value)}}></input>
+          <input placeholder="title for a new card" onChange={e => {setCbarInputValue({title: e.target.value, content: CbarInputValue.content})}}></input>
+          <input placeholder="content for a new card" onChange={e => {setCbarInputValue({title: CbarInputValue.title, content: e.target.value})}}></input>
           <button onClick={handleNewCard}>save</button>
         </div>)
       }
