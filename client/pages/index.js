@@ -38,7 +38,8 @@ export default function Home() {
           <h2 className="text-slate-100">Descriptio</h2>
         </div>
       </section>
-      <section className="flex m-1 w-full mt-32  z-10">
+      
+      <section className="inline-block m-1 mt-32  z-10 mb-4 w-full">
         {Cards.map((cardz) => (
           <Card content={cardz} />
         ))}
