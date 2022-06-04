@@ -48,7 +48,7 @@ export default function Home() {
       </section>
       <section className=" fixed right-0 bottom-0">
         {CmakebarState && (
-          <div className="fixed right-40 bottom-10 bg-slate-900 p-5 pb-32 opacity-95 rounded-xl">
+          <div className="fixed right-32 bottom-10 bg-slate-900 p-5 pb-10 opacity-95 rounded-xl">
             <input
             className="block opacity-100 rounded-sm mb-4 text-center"
               placeholder="title for a new card"
