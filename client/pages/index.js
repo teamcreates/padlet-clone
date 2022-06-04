@@ -89,7 +89,7 @@ export default function Home() {
 
       <section className="inline-block mt-32  z-10 mb-4 w-full">
         {Cards.map((card, i) => (
-          <div key={i}className="rounded-lg inline-block bg-white m-1 max-w-xs cardc">
+          <div key={i}className="rounded-lg align-top inline-block bg-white m-1 cardc">
             <h1 className="font-bold px-2 pt-2 break-words min-w-xs max-w-xs">
               {card.title}
             </h1>
