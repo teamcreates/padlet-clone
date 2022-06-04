@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
-import Card from "../components/card";
 
 export default function Home() {
   const [Cards, setCards] = useState([]);
@@ -50,7 +49,7 @@ export default function Home() {
         {CmakebarState && (
           <div className="fixed right-20 bottom-10 bg-slate-900 p-5 pb-10 opacity-95 rounded-xl">
             <input
-            className="block opacity-100 rounded-sm mb-4 text-center"
+              className="block opacity-100 rounded-sm mb-4 text-center"
               placeholder="title for a new card"
               value={CbarInputValue.title}
               onChange={(e) => {
@@ -59,9 +58,10 @@ export default function Home() {
                   content: CbarInputValue.content,
                 });
               }}
-              
             ></input>
-            <textarea rows="5" className="block opacity-100 resize-none rounded-sm"
+            <textarea
+              rows="5"
+              className="block opacity-100 resize-none rounded-sm"
               placeholder="content for a new card"
               value={CbarInputValue.content}
               onChange={(e) => {
@@ -71,15 +71,36 @@ export default function Home() {
                 });
               }}
             ></textarea>
-            <button className="bg-red-400 text-white w-full mt-4"onClick={handleNewCard}>save</button>
+            <button
+              className="bg-red-400 text-white w-full mt-4"
+              onClick={handleNewCard}
+            >
+              save
+            </button>
           </div>
         )}
-        <button className="bg-red-400 fixed right-0 bottom-0 m-5 p-4 px-6 text-white rounded-full font-bold transition-all hover:bg-red-500 "onClick={cardmakebar}>+</button>
+        <button
+          className="bg-red-400 fixed right-0 bottom-0 m-5 p-4 px-6 text-white rounded-full font-bold transition-all hover:bg-red-500 "
+          onClick={cardmakebar}
+        >
+          +
+        </button>
       </section>
 
       <section className="inline-block mt-32  z-10 mb-4 w-full">
         {Cards.map((card, i) => (
-          <Card key={i} title={card.title} content={card.content} />
+          <div key={i}className="rounded-lg inline-block bg-white m-1 max-w-xs cardc">
+            <h1 className="font-bold px-2 pt-2 break-words min-w-xs max-w-xs">
+              {card.title}
+            </h1>
+            <p className="pb-3 px-2 break-words max-w-xs">{card.content}</p>
+            <style jsx>{`
+              .cardc {
+                max-width: 17.5rem;
+                min-width: 17.5rem;
+              }
+            `}</style>
+          </div>
         ))}
       </section>
     </div>
