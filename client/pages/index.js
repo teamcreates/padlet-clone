@@ -6,7 +6,10 @@ import Card from "../components/card";
 export default function Home() {
   const [Cards, setCards] = useState([]);
   const [CmakebarState, setCmakebarState] = useState(false);
-  const [CbarInputValue, setCbarInputValue] = useState('');
+  const [CbarInputValue, setCbarInputValue] = useState({
+    title: "",
+    content: "",
+  });
 
   function cardmakebar() {
     if (CmakebarState === true) {
@@ -15,11 +18,16 @@ export default function Home() {
       setCmakebarState(true);
     }
   }
-  
+
   function handleNewCard() {
-    if (CbarInputValue === '') return;
+    if (CbarInputValue === "") return;
 
     setCards([...Cards, CbarInputValue]);
+    cardmakebar();
+    setCbarInputValue({
+      title: "",
+      content: "",
+    });
   }
 
   return (
@@ -38,19 +46,42 @@ export default function Home() {
           <h2 className="text-slate-100">Descriptio</h2>
         </div>
       </section>
-      
-      <section className="inline-block m-1 mt-32  z-10 mb-4 w-full">
-        {Cards.map((cardz) => (
-          <Card content={cardz} />
+      <section className=" fixed right-0 bottom-0">
+        {CmakebarState && (
+          <div className="fixed right-20 bottom-10 bg-slate-900 p-5 pb-10 opacity-95 rounded-xl">
+            <input
+            className="block opacity-100 rounded-sm mb-4 text-center"
+              placeholder="title for a new card"
+              value={CbarInputValue.title}
+              onChange={(e) => {
+                setCbarInputValue({
+                  title: e.target.value,
+                  content: CbarInputValue.content,
+                });
+              }}
+              
+            ></input>
+            <textarea rows="5" className="block opacity-100 resize-none rounded-sm"
+              placeholder="content for a new card"
+              value={CbarInputValue.content}
+              onChange={(e) => {
+                setCbarInputValue({
+                  title: CbarInputValue.title,
+                  content: e.target.value,
+                });
+              }}
+            ></textarea>
+            <button className="bg-red-400 text-white w-full mt-4"onClick={handleNewCard}>save</button>
+          </div>
+        )}
+        <button className="bg-red-400 fixed right-0 bottom-0 m-5 p-4 px-6 text-white rounded-full font-bold transition-all hover:bg-red-500 "onClick={cardmakebar}>+</button>
+      </section>
+
+      <section className="inline-block mt-32  z-10 mb-4 w-full">
+        {Cards.map((card, i) => (
+          <Card key={i} title={card.title} content={card.content} />
         ))}
       </section>
-      <button onClick={cardmakebar}>press!</button>
-      {
-        CmakebarState &&(<div className="fixed top-50 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white m-20 z-0">
-          <input placeholder="make a new card" onChange={e => {setCbarInputValue(e.target.value)}}></input>
-          <button onClick={handleNewCard}>save</button>
-        </div>)
-      }
     </div>
   );
 }
